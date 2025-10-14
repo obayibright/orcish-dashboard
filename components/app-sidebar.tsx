@@ -2,23 +2,34 @@
 
 import * as React from "react";
 import {
+  IconAdjustmentsHorizontal,
+  IconBook,
   IconCamera,
+  IconCertificate,
   IconChartBar,
+  IconClipboardText,
   IconDashboard,
   IconDatabase,
+  IconDevicesQuestion,
+  IconFile,
   IconFileAi,
   IconFileDescription,
   IconFileWord,
   IconFolder,
   IconHelp,
   IconInnerShadowTop,
+  IconLayoutDashboard,
+  IconLineScan,
   IconListDetails,
   IconReport,
+  IconSchool,
   IconSearch,
   IconSettings,
   IconUsers,
+  IconVideo,
 } from "@tabler/icons-react";
 
+import DashboardOutlinedIcon from '@mui/icons-material/DashboardOutlined';
 import { NavDocuments } from "@/components/nav-documents";
 import { NavMain } from "@/components/nav-main";
 import { NavSecondary } from "@/components/nav-secondary";
@@ -43,27 +54,55 @@ const data = {
     {
       title: "Dashboard",
       url: "#",
-      icon: IconDashboard,
+      icon: IconLayoutDashboard,
     },
     {
-      title: "Lifecycle",
+      title: "Modes",
       url: "#",
-      icon: IconListDetails,
+      icon: IconAdjustmentsHorizontal,
+      isActive: true,
+      items: [
+        {
+          title: "Study Mode",
+          url: "#",
+          icon: IconBook,
+        },
+        {
+          title: "Practice Mode",
+          url: "#",
+          icon: IconLineScan,
+        },
+        {
+          title: "Mock Exams",
+          url: "#",
+          icon: IconDevicesQuestion,
+        },
+      ],
     },
     {
-      title: "Analytics",
+      title: "Courses",
       url: "#",
-      icon: IconChartBar,
+      icon: IconSchool,
     },
     {
-      title: "Projects",
+      title: "Notes",
       url: "#",
-      icon: IconFolder,
+      icon: IconFileDescription,
     },
     {
-      title: "Team",
+      title: "Assessments",
       url: "#",
-      icon: IconUsers,
+      icon: IconClipboardText,
+    },
+    {
+      title: "Certifications",
+      url: "#",
+      icon: IconCertificate,
+    },
+    {
+      title: "Tutorials",
+      url: "#",
+      icon: IconVideo,
     },
   ],
   navClouds: [
@@ -133,19 +172,19 @@ const data = {
   ],
   documents: [
     {
-      name: "Data Library",
+      name: "Resources",
+      url: "#",
+      icon: IconFile,
+    },
+    {
+      name: "Community",
+      url: "#",
+      icon: IconUsers,
+    },
+    {
+      name: "Integrations",
       url: "#",
       icon: IconDatabase,
-    },
-    {
-      name: "Reports",
-      url: "#",
-      icon: IconReport,
-    },
-    {
-      name: "Word Assistant",
-      url: "#",
-      icon: IconFileWord,
     },
   ],
 };
@@ -163,7 +202,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
               <a href="#">
                 <IconInnerShadowTop className="!size-5" />
                 <span className="text-base font-semibold">
-                  Orcish Dashboard
+                  Bito Learning App
                 </span>
               </a>
             </SidebarMenuButton>

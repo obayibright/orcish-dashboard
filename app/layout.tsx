@@ -9,9 +9,9 @@ import { ThemeProvider } from "@/components/providers/theme-provider";
 import { ActiveThemeProvider } from "@/components/active-theme";
 
 export const metadata: Metadata = {
-  title: "Orcish Dashboard",
+  title: "Bito - AI Learning Platform",
   description:
-    "A fully responsive analytics dashboard featuring dynamic charts, interactive tables, a collapsible sidebar, and a light/dark mode theme switcher. Built with modern web technologies, it ensures seamless performance across devices, offering an intuitive user interface for data visualization and exploration.",
+    "Leverage AI to learn about courses, prepare for exams and create lecture notes.",
 };
 
 export default async function RootLayout({

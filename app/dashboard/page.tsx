@@ -1,10 +1,12 @@
-import { AppSidebar } from "@/components/app-sidebar";
-import { ChartAreaInteractive } from "@/components/chart-area-interactive";
-import { DataTable } from "@/components/data-table";
-import { SiteHeader } from "@/components/site-header";
-import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
-
-import data from "./data.json";
+import type React from "react"
+import { AppSidebar } from "@/components/app-sidebar"
+import { ChartAreaInteractive } from "@/components/chart-area-interactive"
+import { SiteHeader } from "@/components/site-header"
+import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar"
+import { SectionCards } from "@/components/section-cards"
+import ContinueLearning from "@/components/continue-learning"
+import Timeline from "@/components/timeline"
+import Trophy from "@/components/trophy"
 
 export default function Page() {
   return (
@@ -20,16 +22,32 @@ export default function Page() {
       <SidebarInset>
         <SiteHeader />
         <div className="flex flex-1 flex-col">
-          <div className="@container/main flex flex-1 flex-col gap-2">
-            <div className="flex flex-col gap-4 py-4 md:gap-6 md:py-6">
-              <div className="px-4 lg:px-6">
-                <ChartAreaInteractive />
+          <div className="p-4 md:p-6 space-y-6">
+            <div className="grid grid-cols-1 lg:grid-cols-[1fr_350px] gap-6 items-start">
+              {/* Top Left: Section Cards (3 cards) */}
+              <div className="h-full">
+                <SectionCards />
               </div>
-              <DataTable data={data} />
+
+              {/* Top Right: Trophy (matching height of cards row) */}
+              <div className="h-full">
+                <Trophy />
+              </div>
+            </div>
+
+            <div className="grid grid-cols-1 lg:grid-cols-[1fr_350px] gap-6">
+              {/* Left Column: Chart Area + Continue Learning */}
+              <div className="space-y-6">
+                <ChartAreaInteractive />
+                <ContinueLearning />
+              </div>
+
+              {/* Right Column: Timeline (starting at same row as chart) */}
+              <Timeline />
             </div>
           </div>
         </div>
       </SidebarInset>
     </SidebarProvider>
-  );
+  )
 }

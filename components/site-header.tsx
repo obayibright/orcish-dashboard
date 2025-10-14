@@ -1,7 +1,9 @@
+import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { SidebarTrigger } from "@/components/ui/sidebar";
 import { ThemeSelector } from "./theme-selector";
 import { ModeSwitcher } from "./mode-switcher";
+import { Bell, Mail } from "lucide-react";
 
 export function SiteHeader() {
   return (
@@ -13,7 +15,13 @@ export function SiteHeader() {
           className="mx-2 data-[orientation=vertical]:h-4"
         />
         <h1 className="text-base font-medium">Documents</h1>
-        <div className="ml-auto flex items-center gap-2">
+        <div className="ml-auto flex items-center gap-4">
+          <Button variant="ghost" size="icon" className="h-8 w-8">
+            <Mail className="h-4 w-4" />
+          </Button>
+          <Button variant="ghost" size="icon" className="h-8 w-8">
+            <Bell className="h-4 w-4" />
+          </Button>
           <ThemeSelector />
           <ModeSwitcher />
         </div>
