@@ -114,19 +114,19 @@ export default function Timeline() {
           </div>
 
           {/* Mini Calendar */}
-          <div className="grid grid-cols-7 gap-1 text-center mt-4">
+          <div className="grid grid-cols-7 gap-1 text-center mt-4 min-w-0">
             {["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"].map((day) => (
               <div key={day} className="text-xs font-medium text-muted-foreground">
                 {day}
               </div>
             ))}
-            <div className="bg-green-600 text-white rounded-md py-2 font-semibold">10</div>
-            <div className="bg-green-600 text-white rounded-md py-2 font-semibold">11</div>
-            <div className="py-2">12</div>
-            <div className="py-2">13</div>
-            <div className="py-2">14</div>
-            <div className="py-2">15</div>
-            <div className="py-2">16</div>
+            <div className="bg-green-600 text-white rounded-md py-2 font-semibold text-sm">10</div>
+            <div className="bg-green-600 text-white rounded-md py-2 font-semibold text-sm">11</div>
+            <div className="py-2 text-sm">12</div>
+            <div className="py-2 text-sm">13</div>
+            <div className="py-2 text-sm">14</div>
+            <div className="py-2 text-sm">15</div>
+            <div className="py-2 text-sm">16</div>
           </div>
         </div>
 

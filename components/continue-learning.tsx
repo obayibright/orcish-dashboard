@@ -2,21 +2,8 @@
 
 import type React from "react"
 
-import {
-  Search,
-  Globe,
-  Info,
-  ArrowUp,
-  MoreHorizontal,
-  Minus,
-  Circle,
-  Star,
-  Monitor,
-  Pencil,
-  User,
-  Video,
-} from "lucide-react"
-import { IconCircleCheckFilled, IconLoader } from "@tabler/icons-react"
+import { Search, Globe, Info, MoreHorizontal, Minus, Circle, Star, Monitor, Pencil, User, Video } from "lucide-react"
+import { IconCircleCheckFilled, IconLoader, IconProgress } from "@tabler/icons-react"
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
@@ -37,31 +24,24 @@ function CourseCard({ icon, iconBgColor, title, level, duration, progress, statu
   const getProgressBadge = () => {
     if (progress === 0) {
       return (
-        <div className="bg-gray-200 text-gray-800 text-sm font-medium inline-flex items-center px-2.5 py-0.5 rounded-full dark:bg-gray-700 dark:text-gray-300">
+        <Badge variant="outline" className="text-muted-foreground px-1.5">
           <Minus className="w-4 h-4 mr-1" />
           {progress}%
-        </div>
-      )
-    } else if (progress < 50) {
-      return (
-        <div className="bg-amber-100 text-amber-900 text-sm font-medium inline-flex items-center px-2.5 py-0.5 rounded-full dark:bg-amber-200 dark:text-amber-950">
-          <ArrowUp className="w-4 h-4 mr-1 text-amber-500" />
-          {progress}%
-        </div>
+        </Badge>
       )
     } else if (progress < 100) {
       return (
-        <div className="bg-emerald-100 text-emerald-800 text-sm font-medium inline-flex items-center px-2.5 py-0.5 rounded-full dark:bg-emerald-200 dark:text-emerald-900">
-          <ArrowUp className="w-4 h-4 mr-1 text-emerald-600" />
+        <Badge variant="outline" className="text-muted-foreground px-1.5">
+          <IconProgress className="mr-1" />
           {progress}%
-        </div>
+        </Badge>
       )
     } else {
       return (
-        <div className="bg-emerald-100 text-emerald-800 text-sm font-medium inline-flex items-center px-2.5 py-0.5 rounded-full dark:bg-emerald-200 dark:text-emerald-900">
-          <ArrowUp className="w-4 h-4 mr-1 text-emerald-600" />
+        <Badge variant="outline" className="text-muted-foreground px-1.5">
+          <IconCircleCheckFilled className="fill-green-500 dark:fill-green-400 mr-1" />
           {progress}%
-        </div>
+        </Badge>
       )
     }
   }
@@ -92,41 +72,46 @@ function CourseCard({ icon, iconBgColor, title, level, duration, progress, statu
   }
 
   return (
-    <div className="bg-card border border-border p-4 rounded-xl shadow-sm flex flex-nowrap items-center justify-between gap-4 min-w-0">
-      <div className="flex items-center gap-4 flex-shrink-0">
-        <div className={`${iconBgColor} p-3 rounded-lg flex-shrink-0`}>{icon}</div>
-        <div className="min-w-0 flex-shrink-0">
-          <div className="flex items-center gap-2 flex-nowrap">
-            <h2 className="font-semibold text-lg text-foreground whitespace-nowrap">{title}</h2>
-            {badge && (
-              <span className="bg-green-100 text-green-800 text-xs font-semibold px-2.5 py-0.5 rounded-full dark:bg-green-900 dark:text-green-300 inline-flex items-center whitespace-nowrap flex-shrink-0">
-                <Star className="w-3 h-3 mr-1" />
-                {badge}
-              </span>
-            )}
-          </div>
-          <p className="text-sm text-muted-foreground whitespace-nowrap">
-            {level} • {duration}
-          </p>
+    <div className="bg-card border border-border p-4 rounded-xl shadow-sm grid grid-cols-[auto_1fr_auto_auto_auto] gap-4 items-center min-w-0">
+      {/* Icon column */}
+      <div className={`${iconBgColor} p-3 rounded-lg flex-shrink-0`}>{icon}</div>
+
+      {/* Title and details column - flexible width */}
+      <div className="min-w-0">
+        <div className="flex items-center gap-2 flex-wrap">
+          <h2 className="font-semibold text-lg text-foreground">{title}</h2>
+          {badge && (
+            <span className="bg-green-100 text-green-800 text-xs font-semibold px-2.5 py-0.5 rounded-full dark:bg-green-900 dark:text-green-300 inline-flex items-center whitespace-nowrap flex-shrink-0">
+              <Star className="w-3 h-3 mr-1" />
+              {badge}
+            </span>
+          )}
         </div>
+        <p className="text-sm text-muted-foreground">
+          {level} • {duration}
+        </p>
       </div>
-      <div className="flex items-center gap-4 flex-shrink-0 flex-nowrap">
-        <div className="text-center w-36 flex-shrink-0">
-          <p className="text-sm text-muted-foreground mb-1 whitespace-nowrap">Course Progress</p>
-          {getProgressBadge()}
-        </div>
-        <div className="text-center w-36 flex-shrink-0">
-          <p className="text-sm text-muted-foreground mb-1 whitespace-nowrap">Course Status</p>
-          {getStatusBadge()}
-        </div>
-        <Button
-          variant="outline"
-          size="icon"
-          className="text-muted-foreground hover:bg-accent bg-transparent flex-shrink-0"
-        >
-          <MoreHorizontal className="w-5 h-5" />
-        </Button>
+
+      {/* Course Progress column - fixed width */}
+      <div className="text-center w-36 flex-shrink-0">
+        <p className="text-sm text-muted-foreground mb-1 whitespace-nowrap">Course Progress</p>
+        {getProgressBadge()}
       </div>
+
+      {/* Course Status column - fixed width */}
+      <div className="text-center w-36 flex-shrink-0">
+        <p className="text-sm text-muted-foreground mb-1 whitespace-nowrap">Course Status</p>
+        {getStatusBadge()}
+      </div>
+
+      {/* Three dots menu column */}
+      <Button
+        variant="outline"
+        size="icon"
+        className="text-muted-foreground hover:bg-accent bg-transparent flex-shrink-0"
+      >
+        <MoreHorizontal className="w-5 h-5" />
+      </Button>
     </div>
   )
 }
@@ -176,13 +161,13 @@ export default function ContinueLearning() {
     <Card className="max-w-7xl mx-auto">
       <CardHeader className="pb-3">
         <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
-          <div className="flex items-center space-x-3">
-            <Globe className="w-6 h-6 text-foreground" />
+          <div className="flex items-start gap-3">
+            <Globe className="w-6 h-6 text-foreground mt-0.5" />
             <div>
               <CardTitle>Continue Learning</CardTitle>
               <CardDescription>Track and continue your learning progress</CardDescription>
             </div>
-            <Info className="w-5 h-5 text-muted-foreground" />
+            <Info className="w-5 h-5 text-muted-foreground mt-0.5" />
           </div>
           <div className="relative w-full sm:w-80">
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
